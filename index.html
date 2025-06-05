@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Știri Antena 69</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            /* Light gray background for the page */
+        }
+
+        .news-card-bg {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            /* Needed for absolute positioning of overlay */
+        }
+
+        .news-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 100%);
+            padding: 1.5rem;
+            /* Equivalent to p-6 */
+            border-bottom-left-radius: 0.5rem;
+            /* Equivalent to rounded-b-lg */
+            border-bottom-right-radius: 0.5rem;
+            /* Equivalent to rounded-b-lg */
+        }
+
+        .news-card-overlay-sidebar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+            padding: 1rem;
+            /* Equivalent to p-4 */
+            border-bottom-left-radius: 0.5rem;
+            /* Equivalent to rounded-b-lg */
+            border-bottom-right-radius: 0.5rem;
+            /* Equivalent to rounded-b-lg */
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            /* rounded-md */
+            font-size: 0.75rem;
+            /* text-xs */
+            font-weight: 600;
+            /* font-semibold */
+            text-transform: uppercase;
+        }
+
+        .navbar {
+            background-color: #1f2937;
+            /* bg-gray-800 */
+        }
+
+        /* Class for cards that pop on hover */
+        .interactive-card {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            /* Moves card up and makes it slightly larger */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 30px rgba(220, 38, 38, 0.3);
+            /* Enhanced shadow, with a hint of red */
+        }
+
+        /* Ensure the main featured news card also gets this behavior */
+        .featured-news-card-container .news-card-bg {
+            /* Target the background div inside for transformation */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+
+        .featured-news-card-container:hover .news-card-bg {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 30px rgba(220, 38, 38, 0.3);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-gray-100">
+
+    <!-- Navbar -->
+    <nav class="navbar p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-red-500">ȘTIRI ANTENA 69</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="Program.html" class="hover:text-red-400 transition duration-300">PROGRAM</a>
+                <a href="Vedete.html" class="hover:text-red-400 transition duration-300">VEDETE</a>
+                <a href="Emisiuni.html" class="hover:text-red-400 transition duration-300">EMISIUNI</a>
+                <a href="Seriale.html" class="hover:text-red-400 transition duration-300">SERIALE</a>
+                <a href="Filme.html" class="hover:text-red-400 transition duration-300">FILME</a>
+                <a href="index.html" class="text-red-500 font-semibold border-b-2 border-red-500 pb-1">ȘTIRI</a>
+                <a href="Live.html" class="hover:text-red-400 transition duration-300">LIVE</a>
+            </div>
+            <div class="relative">
+                <input type="text" placeholder="Cautare..."
+                    class="bg-gray-700 text-gray-200 placeholder-gray-400 px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
+                <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 hover:text-red-500 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden mt-2 space-y-2 px-2 pb-3">
+            <a href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-red-400 transition duration-300">PROGRAM</a>
+            <a href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-red-400 transition duration-300">VEDETE</a>
+            <a href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-red-400 transition duration-300">EMISIUNI</a>
+            <a href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-red-400 transition duration-300">SERIALE</a>
+            <a href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-red-400 transition duration-300">FILME</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-red-500 bg-gray-700">ȘTIRI</a>
+            <a href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-red-400 transition duration-300">LIVE</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Main Featured News (Left Column) -->
+        <!-- Added 'featured-news-card-container' class for specific hover targeting -->
+        <div class="lg:col-span-2 featured-news-card-container">
+            <!-- Schimbați 'your-main-image-url.jpg' cu URL-ul imaginii principale -->
+            <div class="news-card-bg rounded-lg shadow-xl overflow-hidden h-[30rem] md:h-[35rem] lg:h-[40rem]"
+                style="background-image: url('https://placehold.co/1200x800/334155/E0E0E0?text=Știre+Principală');">
+                <div class="news-card-overlay">
+                    <span class="category-tag bg-red-600 text-white mb-2">Exclusiv</span>
+                    <!-- Editați acest titlu -->
+                    <h1   
+                        class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 leading-tight">Titlu Știre
+                        Principală Atractiv și Lung Pentru Testare</h1>
+                    <!-- Editați acest rezumat -->
+                    <p    class="text-sm md:text-base text-gray-200 hidden sm:block">Scurt rezumat
+                        al știrii principale. Acesta este un text placeholder pe care îl puteți modifica pentru a
+                        descrie conținutul. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar News (Right Column) -->
+        <div class="lg:col-span-1 space-y-6">
+            <!-- Sidebar Card 1: Advertisement Style. Added 'interactive-card' class -->
+            <div class="bg-slate-800 rounded-lg shadow-lg overflow-hidden interactive-card">
+                <!-- Schimbați 'your-sidebar-image-1.jpg' cu URL-ul imaginii -->
+                <div class="news-card-bg h-48"
+                    style="background-image: url('https://placehold.co/600x400/475569/E0E0E0?text=Advertisment'); position: relative;">
+                    <span
+                        class="absolute top-2 left-2 category-tag bg-yellow-500 text-black text-xs">Advertisment</span>
+                </div>
+                <div class="p-4">
+                    <!-- Editați acest titlu -->
+                    <h2    class="text-lg font-semibold text-white mb-1">"Minciuni de familie", o
+                        dramă captivantă</h2>
+                    <!-- Editați acest text -->
+                    <p    class="text-xs text-gray-300">Descoperă noua serie care te va ține cu
+                        sufletul la gură. În curând, la Canal D.</p>
+                </div>
+            </div>
+
+            <!-- Sidebar Card 2: Promo Style. Added 'interactive-card' class -->
+            <div class="bg-slate-800 rounded-lg shadow-lg overflow-hidden interactive-card">
+                <!-- Schimbați 'your-sidebar-image-2.jpg' cu URL-ul imaginii -->
+                <div class="news-card-bg h-48"
+                    style="background-image: url('https://placehold.co/600x400/52525B/E0E0E0?text=Promo'); position: relative;">
+                    <span class="absolute top-2 left-2 category-tag bg-blue-500 text-white text-xs">Promo</span>
+                    <div class="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">▶
+                        0:30</div>
+                </div>
+                <div class="p-4">
+                    <!-- Editați acest titlu -->
+                    <h2    class="text-lg font-semibold text-white mb-1">Interviu Exclusiv cu Vedeta
+                        Momentului</h2>
+                    <!-- Editați acest text -->
+                    <p    class="text-xs text-gray-300">Află secretele din spatele succesului
+                        într-un interviu de neratat. Detalii incendiare aici.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program TV Section - Placeholder -->
+    <div class="container mx-auto p-4 md:px-8 mt-8">
+        <h2 class="text-2xl font-bold text-red-500 mb-6 border-l-4 border-red-500 pl-3">PROGRAM TV</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Program Item 1. Added 'interactive-card' class, removed hover:shadow-xl -->
+            <div class="bg-slate-800 p-4 rounded-lg shadow-md interactive-card">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm text-gray-400">ASTĂZI LA CANAL D</span>
+                    <span class="text-lg font-bold text-red-400">7:56</span>
+                </div>
+                <h3    class="text-md font-semibold text-white mb-1">FOLLOW US</h3>
+                <p    class="text-xs text-gray-300">Emisiune matinală cu știri și divertisment.</p>
+                <a href="#" class="text-red-500 hover:text-red-400 text-xs font-semibold mt-2 inline-block">Detalii
+                    &gt;</a>
+            </div>
+            <!-- Program Item 2. Added 'interactive-card' class, removed hover:shadow-xl -->
+            <div class="bg-slate-800 p-4 rounded-lg shadow-md interactive-card">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm text-gray-400">ASTĂZI LA CANAL D</span>
+                    <span class="text-lg font-bold text-red-400">10:00</span>
+                </div>
+                <h3    class="text-md font-semibold text-white mb-1">CASA IUBIRII</h3>
+                <p    class="text-xs text-gray-300">Reality show despre dragoste și relații.</p>
+                <a href="#" class="text-red-500 hover:text-red-400 text-xs font-semibold mt-2 inline-block">Detalii
+                    &gt;</a>
+            </div>
+            <!-- Program Item 3. Added 'interactive-card' class, removed hover:shadow-xl -->
+            <div class="bg-slate-800 p-4 rounded-lg shadow-md interactive-card">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm text-gray-400">ASTĂZI LA CANAL D</span>
+                    <span class="text-lg font-bold text-red-400">12:00</span>
+                </div>
+                <h3    class="text-md font-semibold text-white mb-1">ȘTIRILE CANAL D</h3>
+                <p    class="text-xs text-gray-300">Principalele evenimente ale zilei.</p>
+                <a href="#" class="text-red-500 hover:text-red-400 text-xs font-semibold mt-2 inline-block">Detalii
+                    &gt;</a>
+            </div>
+            <!-- Program Item 4 (Optional). Added 'interactive-card' class, removed hover:shadow-xl -->
+            <div class="bg-slate-800 p-4 rounded-lg shadow-md interactive-card">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm text-gray-400">ASTĂZI LA CANAL D</span>
+                    <span class="text-lg font-bold text-red-400">14:30</span>
+                </div>
+                <h3    class="text-md font-semibold text-white mb-1">FILM ARTISTIC</h3>
+                <p    class="text-xs text-gray-300">O capodoperă cinematografică.</p>
+                <a href="#" class="text-red-500 hover:text-red-400 text-xs font-semibold mt-2 inline-block">Detalii
+                    &gt;</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-gray-400 p-8 mt-12 border-t border-slate-700">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">&copy; 2024 Știri Antena 69 SRL. Toate drepturile rezervate.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:text-red-400">Contact</a>
+                <a href="#" class="hover:text-red-400">Termeni și Condiții</a>
+                <a href="#" class="hover:text-red-400">Politică de Confidențialitate</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript pentru meniul mobil
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // JavaScript pentru editarea conținutului (opțional, HTML contenteditable face deja asta)
+        // Puteți adăuga aici funcționalități mai avansate dacă este necesar,
+        // de exemplu, salvarea modificărilor în localStorage sau trimiterea către un server.
+        // Pentru moment, atributul `  ` permite editarea directă în browser.
+        console.log("Textul din elementele cu 'contenteditable=true' poate fi modificat direct.");
+        console.log("Pentru a schimba imaginile de fundal, modificați URL-urile din atributul 'style' al div-urilor cu clasa 'news-card-bg'.");
+    </script>
+
+</body>
+
+</html>

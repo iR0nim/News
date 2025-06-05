@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 - Dark background for the page */
+            color: #d1d5db; /* text-gray-300 - Default text color */
+        }
+        .navbar {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        .article-content h2 {
+            font-size: 1.5em; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-top: 1.5rem; /* mt-6 */
+            margin-bottom: 0.75rem; /* mb-3 */
+            color: #f3f4f6; /* text-gray-100 */
+        }
+        .article-content p {
+            font-size: 1rem; /* text-base */
+            line-height: 1.6; /* leading-relaxed */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem; /* rounded-lg */
+            margin-top: 1rem; /* mt-4 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .article-content blockquote {
+            border-left: 4px solid #ef4444; /* border-red-500 */
+            padding-left: 1rem; /* pl-4 */
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #9ca3af; /* text-gray-400 */
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem; /* mb-8 */
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            background-color: #374151; /* bg-gray-700 */
+            color: #f3f4f6; /* text-gray-100 */
+            border-radius: 0.375rem; /* rounded-md */
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #4b5563; /* bg-gray-600 */
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-100">
+
+    <!-- Navbar -->
+    <nav class="navbar p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-red-500">ȘTIRI ANTENA 69</a> <!-- Link back to main page -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html#program-tv" class="hover:text-red-400 transition duration-300">PROGRAM</a> <!-- Assuming index.html has id="program-tv" -->
+                <a href="#" class="hover:text-red-400 transition duration-300">VEDETE</a>
+                <a href="#" class="hover:text-red-400 transition duration-300">EMISIUNI</a>
+                <a href="#" class="hover:text-red-400 transition duration-300">SERIALE</a>
+                <a href="#" class="hover:text-red-400 transition duration-300">FILME</a>
+                <a href="index.html" class="text-red-500 font-semibold border-b-2 border-red-500 pb-1">ȘTIRI</a>
+                <a href="#" class="hover:text-red-400 transition duration-300">LIVE</a>
+            </div>
+            <div class="relative">
+                <input type="text" placeholder="Cautare..." class="bg-gray-700 text-gray-200 placeholder-gray-400 px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
+                <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </button>
+            </div>
+             <!-- Mobile Menu Button (Optional, if needed on article page too) -->
+        </div>
+    </nav>
+
+    <!-- Article Main Content -->
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <a href="index.html" class="back-link">&larr; Înapoi la Știri</a>
+
+        <!-- Editați Titlul Articolului -->
+        <h1   class="text-3xl md:text-4xl lg:text-5xl font-bold text-red-500 mb-4 leading-tight">Titlu Detaliat și Captivant Pentru Acest Articol de Știre</h1>
+
+        <!-- Meta Informații Articol (opțional) -->
+        <div class="text-sm text-gray-400 mb-6">
+            <span  >Publicat de: Nume Autor</span> | <span  >Data: 5 Iunie 2024</span>
+        </div>
+
+        <!-- Imagine Articol Principală -->
+        <!-- Schimbați 'your-article-image.jpg' cu URL-ul imaginii articolului -->
+        <img src="https://placehold.co/1000x600/334155/E0E0E0?text=Imagine+Articol" alt="Imagine Articol Principală" class="rounded-lg shadow-xl mb-8 w-full">
+
+        <!-- Conținut Articol -->
+        <article class="article-content prose prose-invert lg:prose-xl max-w-none">
+            <!-- Editați conținutul acestui articol -->
+            <p  >Acesta este paragraful introductiv al articolului. Aici veți prezenta pe scurt subiectul știrii, captând atenția cititorului. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+            <h2  >Subtitlu Important Aici</h2>
+            <p  >Continuarea articolului cu mai multe detalii, fapte și informații. Puteți adăuga mai multe paragrafe pentru a dezvolta subiectul. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+            <!-- Imagine în interiorul articolului (opțional) -->
+            <img src="https://placehold.co/800x400/475569/E0E0E0?text=Imagine+Secundară" alt="Imagine secundară în articol" class="rounded-md my-6 mx-auto block w-3/4">
+
+
+            <p  >Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+            <blockquote  >
+                Acesta este un citat relevant sau o declarație importantă care poate fi inclusă în articol pentru a sublinia un punct. Poate fi de la o persoană implicată sau un expert.
+            </blockquote>
+
+            <h2  >Alt Subtitlu Pentru o Nouă Secțiune</h2>
+            <p  >Dezvoltați aici o altă latură a poveștii sau prezentați noi argumente. Asigurați-vă că textul este ușor de citit și bine structurat. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            <p  >Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+        </article>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-gray-400 p-8 mt-12 border-t border-slate-700">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">&copy; 2024 Știri False SRL. Toate drepturile rezervate (sau nu).</p>
+            <p class="text-xs mt-2">Acesta este un site demonstrativ. Informațiile prezentate sunt fictive.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:text-red-400">Contact</a>
+                <a href="#" class="hover:text-red-400">Termeni și Condiții</a>
+                <a href="#" class="hover:text-red-400">Politică de Confidențialitate</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script opțional pentru funcționalități adiționale pe pagina articolului
+        console.log("Pagina articolului a fost încărcată.");
+        console.log("Textul din elementele cu 'contenteditable=true' poate fi modificat direct.");
+        console.log("Pentru a schimba imaginile, modificați atributul 'src' al tag-urilor <img>.");
+    </script>
+
+</body>
+</html>
